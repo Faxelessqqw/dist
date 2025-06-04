@@ -1,1 +1,42 @@
+#установить python
+from flask import Flask    #в cmd--> pip install flask
+import os                  #в cmd--> pip install os
 
+app = Flask(__name__)
+
+@app.route('/shutdown')                  #'/shutdown' это поддомен в котором лежит команда пример http://XXX.XXX.X.XXX/shutdon
+def shutdown():                          #shutdown название функции 
+    os.system("shutdown /s /t 1")        #shutdown /s /t 1 команда которая отвечает за выключение ПК все команды выполняются в cmd
+    return "PC is shutting down..."
+
+
+@app.route('/website')
+def website():
+    os.system("start http://f937033h.beget.tech")  
+    
+    return "PC is shutting down..."
+
+
+@app.route('/restart')
+def restart():
+    os.system("shutdown /r")  
+   
+    return "PC is shutting down..."
+
+@app.route('/deepseek')
+def deepseek():
+    os.system("start https://chat.deepseek.com/") 
+   
+    return "PC is shutting down..."
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+
+
+
+
+#Инструкция как скомпилировать в exe
+#В cmd--> pip install auto-py-to-exe 
+# python -m auto_py_to_exe
+#В открывшимся окне укажите путь, скомпилировать в один файл, на основе окна(консоль скрыта) таким образом у вас будт 1 exe которого при работае не будт видно. В диспетчере задач можно если что отключить
